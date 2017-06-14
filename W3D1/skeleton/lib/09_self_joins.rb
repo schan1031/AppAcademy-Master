@@ -104,6 +104,18 @@ def cl_to_lr
   # Craiglockhart, without changing routes. Change the query so that it
   # shows the services from Craiglockhart to London Road.
   execute(<<-SQL)
+    SELECT
+      a.company,
+      a.num,
+      a.stop_id,
+      b.stop_id
+    FROM
+      routes a
+    JOIN
+      routes b ON (a.company = b.company AND a.num = b.num)
+    WHERE
+      a.stop_id = 53 AND b.stop_id = 149
+
   SQL
 end
 
@@ -131,6 +143,21 @@ def cl_to_lr_by_name
   # number. Change the query so that the services between 'Craiglockhart' and
   # 'London Road' are shown.
   execute(<<-SQL)
+    SELECT
+      a.company,
+      a.num,
+      stopa.name,
+      stopb.name
+    FROM
+      routes a
+    JOIN
+      routes b ON (a.company = b.company AND a.num = b.num)
+    JOIN
+      stops stopa ON (a.stop_id = stopa.id)
+    JOIN
+      stops stopb ON (b.stop_id = stopb.id)
+    WHERE
+      stopa.name = 'Craiglockhart' AND stopb.name = 'London Road'
   SQL
 end
 
@@ -138,6 +165,16 @@ def haymarket_and_leith
   # Give the company and num of the services that connect stops
   # 115 and 137 ('Haymarket' and 'Leith')
   execute(<<-SQL)
+    SELECT
+      DISTINCT
+      a.company,
+      a.num
+    FROM
+      routes a
+    JOIN
+      routes b ON (a.company = b.company AND a.num = b.num)
+    WHERE
+      a.stop_id = 115 AND b.stop_id = 137
   SQL
 end
 
@@ -145,6 +182,21 @@ def craiglockhart_and_tollcross
   # Give the company and num of the services that connect stops
   # 'Craiglockhart' and 'Tollcross'
   execute(<<-SQL)
+    SELECT
+      a.company,
+      a.num
+      -- stopa.name,
+      -- stopb.name
+    FROM
+      routes a
+    JOIN
+      routes b ON (a.company = b.company AND a.num = b.num)
+    JOIN
+      stops stopa ON (a.stop_id = stopa.id)
+    JOIN
+      stops stopb ON (b.stop_id = stopb.id)
+    WHERE
+      stopa.name = 'Craiglockhart' AND stopb.name = 'Tollcross'
   SQL
 end
 
