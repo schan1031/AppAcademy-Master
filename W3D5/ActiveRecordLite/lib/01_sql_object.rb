@@ -18,7 +18,7 @@ class SQLObject
         LIMIT
           0
       SQL
-      @cols.first.map!(&:to_sym)
+      @cols = @cols.first.map(&:to_sym)
     end
   end
 
@@ -82,7 +82,7 @@ class SQLObject
   def initialize(params = {})
     params.each do |k, v|
       k = k.to_sym
-      if self.class.columns.first.include?(k)
+      if self.class.columns.include?(k)
         self.send("#{k}=", v)
         # self.attributes[k] = v
       else
