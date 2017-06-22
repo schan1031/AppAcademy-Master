@@ -1,0 +1,599 @@
+  [1m[35m (0.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (123.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (98.6ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20170622190340)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar NOT NULL, "session_token" varchar NOT NULL, "password_digest" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_session_token" ON "users" ("session_token")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170622190340"]]
+  [1m[35m (101.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2017-06-22 19:04:57.344484"], ["updated_at", "2017-06-22 19:04:57.344484"]]
+  [1m[35m (76.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_session_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_session_token' AND type='index'
+[0m
+Started GET "/" for 127.0.0.1 at 2017-06-22 13:56:25 -0700
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /var/lib/gems/2.3.0/gems/railties-5.1.1/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /var/lib/gems/2.3.0/gems/railties-5.1.1/lib/rails/templates/rails/welcome/index.html.erb (2.5ms)
+Completed 200 OK in 21ms (Views: 14.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-06-22 13:56:30 -0700
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for UsersController):
+  
+actionpack (5.1.1) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.1) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.1) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.1) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.1) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.1) lib/action_dispatch/journey/router.rb:46:in `block in serve'
+actionpack (5.1.1) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.1) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.1) lib/action_dispatch/routing/route_set.rb:832:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.1) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.1) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.1) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/user" for 127.0.0.1 at 2017-06-22 13:56:33 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/user"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/users/1" for 127.0.0.1 at 2017-06-22 13:56:36 -0700
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (135.5ms)
+Completed 500 Internal Server Error in 138ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<#<Class:0x007f5844015600>:0x0000000228ae40>
+Did you mean?  current_page?):
+    1: <h1>Email</h1>
+    2: <p> <%= current_user.email %></p>
+  
+app/views/users/show.html.erb:2:in `_app_views_users_show_html_erb___323039456476817907_70008537395200'
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "i-pvSxuJFswzK6q8_1XqkQ"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "i-pvSxuJFswzK6q8_1XqkQ"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Started GET "/user/new" for 127.0.0.1 at 2017-06-22 13:58:22 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/user/new"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/users/new" for 127.0.0.1 at 2017-06-22 13:58:26 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"users"}, missing required keys: [:id]):
+    1: <h1>Sign Up</h1>
+    2: 
+    3: <form action="<%= user_url %>" method="post">
+    4:   <label for="email">Email Address</label>
+    5:   <input type="text" name="user[email]" id="email">
+    6: 
+  
+app/views/users/new.html.erb:3:in `_app_views_users_new_html_erb__1245902612308165546_70008475210440'
+app/controllers/users_controller.rb:5:in `new'
+Started GET "/users/new" for 127.0.0.1 at 2017-06-22 13:59:12 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 800ms (Views: 800.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/new" for 127.0.0.1 at 2017-06-22 13:59:21 -0700
+  
+ActionController::RoutingError (No route matches [POST] "/users/new"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/users/new" for 127.0.0.1 at 2017-06-22 14:00:29 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 15ms (Views: 13.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-06-22 14:00:33 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"a", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "ZfYqKwVuaYlCIDAaS9fX2A"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 72ms (ActiveRecord: 0.4ms)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x007f5838261a50>
+Did you mean?  password=):
+  
+app/controllers/users_controller.rb:10:in `create'
+Started POST "/users" for 127.0.0.1 at 2017-06-22 14:03:15 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"a", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "Nmq-tudCmhNsyFFeiNbzZw"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 78ms (ActiveRecord: 0.9ms)
+
+
+  
+NoMethodError (undefined method `password' for #<User:0x000000048496e0>
+Did you mean?  password=):
+  
+app/controllers/users_controller.rb:10:in `create'
+Started POST "/users" for 127.0.0.1 at 2017-06-22 14:04:18 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"a", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "msEVI29K_cIg6Mda6JkbzQ"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "session_token", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "a"], ["session_token", "msEVI29K_cIg6Mda6JkbzQ"], ["password_digest", "$2a$10$mZnZ0561zEXleRq79dQr5.OYUpYQUPQAJbgfF2iqJ47vRjxVPmWOS"], ["created_at", "2017-06-22 21:04:18.298419"], ["updated_at", "2017-06-22 21:04:18.298419"]]
+  [1m[35m (73.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? AND ("users"."id" != ?) LIMIT ?[0m  [["session_token", "oAgKVf7Y0Dxk_fPyq6QGkg"], ["id", 1], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "users" SET "session_token" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["session_token", "oAgKVf7Y0Dxk_fPyq6QGkg"], ["updated_at", "2017-06-22 21:04:18.378548"], ["id", 1]]
+  [1m[35m (58.5ms)[0m  [1m[36mcommit transaction[0m
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (156.2ms)
+Completed 500 Internal Server Error in 380ms (ActiveRecord: 134.6ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<#<Class:0x007f5845dcb820>:0x007f5845dc9930>
+Did you mean?  current_page?):
+    1: <h1>Email</h1>
+    2: <p> <%= current_user.email %></p>
+  
+app/views/users/show.html.erb:2:in `_app_views_users_show_html_erb___323039456476817907_70008552964160'
+app/controllers/users_controller.rb:12:in `create'
+Started POST "/users" for 127.0.0.1 at 2017-06-22 14:07:44 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"a", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "DqzF_Skuzdpow2N07EUwzQ"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "session_token", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "a"], ["session_token", "DqzF_Skuzdpow2N07EUwzQ"], ["password_digest", "$2a$10$FKev.LkcMoLvGC6xlqkRGOaxgxcQW3ppJTlBDp3jfaevhKtiAZLIi"], ["created_at", "2017-06-22 21:07:44.667507"], ["updated_at", "2017-06-22 21:07:44.667507"]]
+  [1m[35m (71.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? AND ("users"."id" != ?) LIMIT ?[0m  [["session_token", "ASAXM7k4LjXjs9GwWWrDZQ"], ["id", 2], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[33mUPDATE "users" SET "session_token" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["session_token", "ASAXM7k4LjXjs9GwWWrDZQ"], ["updated_at", "2017-06-22 21:07:44.742228"], ["id", 2]]
+  [1m[35m (72.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (176.7ms)
+Completed 500 Internal Server Error in 399ms (ActiveRecord: 145.5ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<#<Class:0x007f583eed3490>:0x007f583eed17f8>
+Did you mean?  current_page?):
+    1: <h1>Email</h1>
+    2: <p> <%= current_user.email %></p>
+  
+app/views/users/show.html.erb:2:in `_app_views_users_show_html_erb___323039456476817907_70008494785080'
+app/controllers/users_controller.rb:12:in `create'
+Started GET "/users" for 127.0.0.1 at 2017-06-22 14:08:37 -0700
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for UsersController):
+  
+actionpack (5.1.1) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.1) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.1) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.1) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.1) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.1) lib/action_dispatch/journey/router.rb:46:in `block in serve'
+actionpack (5.1.1) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.1) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.1) lib/action_dispatch/routing/route_set.rb:832:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.1) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.1) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.1) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/users/new" for 127.0.0.1 at 2017-06-22 14:08:41 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 20ms (Views: 12.4ms | ActiveRecord: 0.7ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-06-22 14:08:45 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"b", "password"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "kD2vTlxd4Is_IVFQ244YnQ"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("email", "session_token", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "b"], ["session_token", "kD2vTlxd4Is_IVFQ244YnQ"], ["password_digest", "$2a$10$ZTKys8rky5lfMCpsZgi5vOLLR6IYDS3QJ4xYZhYE0EqsHJBF.Nj02"], ["created_at", "2017-06-22 21:08:46.058868"], ["updated_at", "2017-06-22 21:08:46.058868"]]
+  [1m[35m (84.2ms)[0m  [1m[36mcommit transaction[0m
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (145.3ms)
+Completed 500 Internal Server Error in 299ms (ActiveRecord: 85.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `current_user' for #<#<Class:0x007f583ee5eeb0>:0x007f585803c6d8>
+Did you mean?  current_page?):
+    1: <h1>Email</h1>
+    2: <p> <%= current_user.email %></p>
+  
+app/views/users/show.html.erb:2:in `_app_views_users_show_html_erb___323039456476817907_70008474401160'
+app/controllers/users_controller.rb:12:in `create'
+Started POST "/users" for 127.0.0.1 at 2017-06-22 14:11:10 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"b", "password"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "HqTy_1W0xBl5KUybCg4zJw"], ["LIMIT", 1]]
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "session_token", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "b"], ["session_token", "HqTy_1W0xBl5KUybCg4zJw"], ["password_digest", "$2a$10$wcl8P5aigYXxWCaaETnbvuqbuIqtnSK9hASPX78XwMeyYjriSvn96"], ["created_at", "2017-06-22 21:11:10.830991"], ["updated_at", "2017-06-22 21:11:10.830991"]]
+  [1m[35m (72.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? AND ("users"."id" != ?) LIMIT ?[0m  [["session_token", "s_0UI2Pg-pm5yH-vXL12Fw"], ["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (1.1ms)[0m  [1m[33mUPDATE "users" SET "session_token" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["session_token", "s_0UI2Pg-pm5yH-vXL12Fw"], ["updated_at", "2017-06-22 21:11:10.907796"], ["id", 4]]
+  [1m[35m (61.1ms)[0m  [1m[36mcommit transaction[0m
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "s_0UI2Pg-pm5yH-vXL12Fw"], ["LIMIT", 1]]
+  Rendered users/show.html.erb within layouts/application (23.2ms)
+Completed 200 OK in 266ms (Views: 39.7ms | ActiveRecord: 136.9ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-06-22 14:15:22 -0700
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for UsersController):
+  
+actionpack (5.1.1) lib/abstract_controller/base.rb:119:in `process'
+actionview (5.1.1) lib/action_view/rendering.rb:30:in `process'
+actionpack (5.1.1) lib/action_controller/metal.rb:189:in `dispatch'
+actionpack (5.1.1) lib/action_controller/metal.rb:253:in `dispatch'
+actionpack (5.1.1) lib/action_dispatch/routing/route_set.rb:49:in `dispatch'
+actionpack (5.1.1) lib/action_dispatch/routing/route_set.rb:31:in `serve'
+actionpack (5.1.1) lib/action_dispatch/journey/router.rb:46:in `block in serve'
+actionpack (5.1.1) lib/action_dispatch/journey/router.rb:33:in `each'
+actionpack (5.1.1) lib/action_dispatch/journey/router.rb:33:in `serve'
+actionpack (5.1.1) lib/action_dispatch/routing/route_set.rb:832:in `call'
+rack (2.0.3) lib/rack/etag.rb:25:in `call'
+rack (2.0.3) lib/rack/conditional_get.rb:25:in `call'
+rack (2.0.3) lib/rack/head.rb:12:in `call'
+rack (2.0.3) lib/rack/session/abstract/id.rb:232:in `context'
+rack (2.0.3) lib/rack/session/abstract/id.rb:226:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/cookies.rb:613:in `call'
+activerecord (5.1.1) lib/active_record/migration.rb:556:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.1) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.1) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.9.1) lib/puma/configuration.rb:224:in `call'
+puma (3.9.1) lib/puma/server.rb:602:in `handle_request'
+puma (3.9.1) lib/puma/server.rb:435:in `process_client'
+puma (3.9.1) lib/puma/server.rb:299:in `block in run'
+puma (3.9.1) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/users/new" for 127.0.0.1 at 2017-06-22 14:15:30 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (0.5ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 0.8ms)
+
+
+  
+SyntaxError (/home/schan/Documents/AppAcademy_Master/W4D4/MusicApp/app/views/layouts/application.html.erb:12: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+...nd=( unless current_user.nil? );@output_buffer.safe_append='
+...                               ^
+/home/schan/Documents/AppAcademy_Master/W4D4/MusicApp/app/views/layouts/application.html.erb:20: syntax error, unexpected keyword_ensure, expecting ')'
+/home/schan/Documents/AppAcademy_Master/W4D4/MusicApp/app/views/layouts/application.html.erb:22: syntax error, unexpected keyword_end, expecting ')'):
+  
+app/views/layouts/application.html.erb:12: syntax error, unexpected ')', expecting keyword_then or ';' or '\n'
+app/views/layouts/application.html.erb:20: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/layouts/application.html.erb:22: syntax error, unexpected keyword_end, expecting ')'
+app/controllers/users_controller.rb:5:in `new'
+Started GET "/users/new" for 127.0.0.1 at 2017-06-22 14:15:46 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (0.7ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "s_0UI2Pg-pm5yH-vXL12Fw"], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.2ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"sessions"}, missing required keys: [:id]):
+    11:   <body>
+    12:     <% unless current_user.nil? %>
+    13:     Welcome <%= current_user.email %>~
+    14:     <%= button_to 'Log Out', session_url, method: :delete %>
+    15:     <% end %>
+    16:     <%= yield %>
+    17:   </body>
+  
+app/views/layouts/application.html.erb:14:in `_app_views_layouts_application_html_erb___2848892978201896156_70008541573300'
+app/controllers/users_controller.rb:5:in `new'
+Started GET "/users/new" for 127.0.0.1 at 2017-06-22 14:17:26 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "s_0UI2Pg-pm5yH-vXL12Fw"], ["LIMIT", 1]]
+Completed 200 OK in 22ms (Views: 15.1ms | ActiveRecord: 0.7ms)
+
+
+Started DELETE "/session" for 127.0.0.1 at 2017-06-22 14:17:29 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"hDpHKGh0F8wcThJefySFiqXgTqqi/e33sQo7e21qg+HwYKRjCWHsvpyPjx2ojHkTbPLEdh9DCAirxL8kxCnbBg=="}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "s_0UI2Pg-pm5yH-vXL12Fw"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? AND ("users"."id" != ?) LIMIT ?[0m  [["session_token", "c2-56W9ey9LH0If6wu-mzA"], ["id", 4], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE "users" SET "session_token" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["session_token", "c2-56W9ey9LH0If6wu-mzA"], ["updated_at", "2017-06-22 21:17:29.533125"], ["id", 4]]
+  [1m[35m (82.0ms)[0m  [1m[36mcommit transaction[0m
+No template found for SessionsController#destroy, rendering head :no_content
+Completed 204 No Content in 102ms (ActiveRecord: 83.1ms)
+
+
+Started DELETE "/session" for 127.0.0.1 at 2017-06-22 14:17:31 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"hDpHKGh0F8wcThJefySFiqXgTqqi/e33sQo7e21qg+HwYKRjCWHsvpyPjx2ojHkTbPLEdh9DCAirxL8kxCnbBg=="}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `reset_session_token!' for nil:NilClass):
+  
+app/controllers/sessions_controller.rb:22:in `destroy'
+Started DELETE "/session" for 127.0.0.1 at 2017-06-22 14:17:57 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"hDpHKGh0F8wcThJefySFiqXgTqqi/e33sQo7e21qg+HwYKRjCWHsvpyPjx2ojHkTbPLEdh9DCAirxL8kxCnbBg=="}
+No template found for SessionsController#destroy, rendering head :no_content
+Completed 204 No Content in 9ms
+
+
+Started GET "/users/new" for 127.0.0.1 at 2017-06-22 14:18:06 -0700
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/new.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 21ms (Views: 11.8ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/users" for 127.0.0.1 at 2017-06-22 14:18:13 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"email"=>"c", "password"=>"[FILTERED]"}}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "FoaWznTzUYWbKUFs_DDOHA"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("email", "session_token", "password_digest", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "c"], ["session_token", "FoaWznTzUYWbKUFs_DDOHA"], ["password_digest", "$2a$10$ngVBavHoTw0WnnFNXCly..I7csuG2fNeHv8TEheDjqQ/qOKHdoZOG"], ["created_at", "2017-06-22 21:18:13.207197"], ["updated_at", "2017-06-22 21:18:13.207197"]]
+  [1m[35m (66.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists (0.1ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."session_token" = ? AND ("users"."id" != ?) LIMIT ?[0m  [["session_token", "cwZ5RHDwuzSDfZsKY3ed0Q"], ["id", 5], ["LIMIT", 1]]
+  [1m[35mSQL (0.1ms)[0m  [1m[33mUPDATE "users" SET "session_token" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["session_token", "cwZ5RHDwuzSDfZsKY3ed0Q"], ["updated_at", "2017-06-22 21:18:13.277196"], ["id", 5]]
+  [1m[35m (64.5ms)[0m  [1m[36mcommit transaction[0m
+  Rendering users/show.html.erb within layouts/application
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."session_token" = ? LIMIT ?[0m  [["session_token", "cwZ5RHDwuzSDfZsKY3ed0Q"], ["LIMIT", 1]]
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 219ms (Views: 16.2ms | ActiveRecord: 132.4ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateBands (20170622213845)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE TABLE "bands" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170622213845"]]
+  [1m[35m (112.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_session_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_session_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateAlbums (20170622215248)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE TABLE "albums" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "year" integer NOT NULL, "band_id" integer NOT NULL, "live" boolean NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_albums_on_band_id" ON "albums" ("band_id")[0m
+  [1m[35mSQL (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20170622215248"]]
+  [1m[35m (197.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_albums_on_band_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_albums_on_band_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m  [1m[34m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_session_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_session_token' AND type='index'
+[0m
