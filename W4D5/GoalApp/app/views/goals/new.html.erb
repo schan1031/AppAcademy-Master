@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1>New Goal</h1>
+    <meta charset="utf-8">
+    <title>NEW GOAL PAGE</title>
+  </head>
+  <body>
+    <form class="goal" action=<%=goal_url%> method="post">
+      <label for="body">Goal Body:</label>
+      <input id=body type="text" name="goal[body]" value="">
+      <br>
+      <input id=submit type="submit">
+      <input type="hidden" name="authenticity_token" value=authenticity_token>
+    </form>
+  </body>
+</html>

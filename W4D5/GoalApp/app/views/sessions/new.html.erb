@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <h1>Log in</h1>
+    <meta charset="utf-8">
+    <title>SIGN UP PAGE</title>
+  </head>
+  <body>
+    <form class="session" action=<%=session_url%> method="post">
+      <label for="username">User name:</label>
+      <input id=username type="text" name="user[username]" value="">
+      <br>
+      <label for="password">Password:</label>
+      <input id=password type="password" name="user[password]" value="">
+      <br>
+      <input id=submit type="submit">
+      <input type="hidden" name="authenticity_token" value=authenticity_token>
+    </form>
+  </body>
+</html>
