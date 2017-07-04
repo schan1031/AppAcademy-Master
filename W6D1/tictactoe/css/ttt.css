@@ -1,0 +1,81 @@
+body {
+  text-align: center;
+}
+
+ul {
+  margin: auto;
+  padding: 0;
+  border : 0;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+
+.grid {
+  width: 450px;
+}
+
+.grid > li {
+  float: left;
+  width: 140px;
+  height: 140px;
+  border: 5px solid black;
+  background: grey;
+}
+
+.grid > li.clickedx {
+  background: transparent;
+  font-size: 600%;
+  font-family: fantasy;
+  font-weight: bold;
+}
+
+.grid > li.clickedx:hover {
+  background: transparent;
+
+}
+.grid > li.clickedo {
+  /*background-image: url("./capy.gif");*/
+  background: transparent;
+  font-size: 600%;
+  font-family: fantasy;
+  font-weight: bold;
+}
+
+.grid > li.clickedo:hover {
+  background: transparent;
+
+}
+
+.grid > li:hover{
+  background: yellow;
+}
+
+.grid > li.win {
+  color: white;
+  background: linear-gradient(to bottom, rgba(0, 255, 0, 0.3) 0%, rgba(0, 255, 0, 0.3) 100%), url('https://i1.wp.com/www.toiletovhell.com/wp-content/uploads/2015/12/tumblr_ntl6adJeov1tpri36o1_400.gif?resize=390%2C259');
+  font-size: 600%;
+  font-family: fantasy;
+  font-weight: bold;
+}
+
+.grid > li.win:hover{
+  background: linear-gradient(to bottom, rgba(0, 255, 0, 0.3) 0%, rgba(0, 255, 0, 0.3) 100%), url('https://i1.wp.com/www.toiletovhell.com/wp-content/uploads/2015/12/tumblr_ntl6adJeov1tpri36o1_400.gif?resize=390%2C259');
+  background-position: 280px 250px;
+}
+
+.grid > li.loser {
+  color: white;
+  background: linear-gradient(to bottom, rgba(255, 0, 0, .3) 0%, rgba(255, 0, 0, .3) 100%), url('https://img.buzzfeed.com/buzzfeed-static/static/2016-08/12/15/asset/buzzfeed-prod-web10/anigif_sub-buzz-22311-1471030600-2.gif');
+  background-position: 150px 164px;
+  font-size: 600%;
+  font-family: fantasy;
+  font-weight: bold;
+}
+
+.grid > li.loser:hover{
+  background: linear-gradient(to bottom, rgba(255, 0, 0, .3) 0%, rgba(255, 0, 0, .3) 100%), url('https://img.buzzfeed.com/buzzfeed-static/static/2016-08/12/15/asset/buzzfeed-prod-web10/anigif_sub-buzz-22311-1471030600-2.gif');
+}

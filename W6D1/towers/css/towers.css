@@ -1,0 +1,27 @@
+body {
+  text-align: center;
+  /*border-bottom: 5px solid black;*/
+}
+
+ul {
+  padding: 0;
+  margin: auto;
+  border : 0;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+.grid {
+  width: 450px;
+}
+
+.grid > li {
+  float: left;
+  width: 146px;
+  height: 75px;
+  border: 2px solid black;
+  background: yellow;
+}
