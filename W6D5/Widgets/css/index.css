@@ -1,0 +1,17 @@
+.clock {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 50%;
+  color: red;
+  font-family: 'Abril Fatface', cursive;
+  font-size: 30px;
+  background-color: #73D2E5;
+  text-align: center;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+h1 {
+  text-align: center;
+}
