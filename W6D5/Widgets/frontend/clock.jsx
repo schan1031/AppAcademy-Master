@@ -26,14 +26,20 @@ export default class Clock extends React.Component{
       <div>
         <h1>Clock</h1>
         <div className='clock'>
+          <div>
+          <p>Time:</p>
           <p>
-          <span>
-            {this.state.time.toTimeString()}
-          </span>
-        </p>
-          <p>
-            Date: {this.state.time.toDateString()}
+            Date:
           </p>
+        </div>
+        <div>
+          <p>
+            {this.state.time.toTimeString()}
+          </p>
+          <p>
+            {this.state.time.toDateString()}
+          </p>
+        </div>
 
         </div>
       </div>

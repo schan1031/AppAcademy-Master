@@ -1,17 +1,49 @@
+body {
+  background-color: #6d6e70;
+}
+
 .clock {
   display: flex;
   justify-content: space-between;
   margin: auto;
   width: 50%;
-  color: red;
-  font-family: 'Abril Fatface', cursive;
-  font-size: 30px;
-  background-color: #73D2E5;
+  color: #c95024;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 24px;
+  background-color: lightblue;
   text-align: center;
-  border: 2px solid black;
-  padding: 10px;
+  border-left: 10px solid #73D2E5;
+  border-radius: 15px;
+  padding: 5px;
 }
 
 h1 {
   text-align: center;
+  font-family: 'Architects Daughter', cursive;
+  color: #c2c66d;
+}
+
+.weather > div {
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  width: 50%;
+  color: #c95024;
+  font-family: 'Architects Daughter', cursive;
+  font-size: 24px;
+  background-color: lightblue;
+  text-align: center;
+  padding: 5px;
+  border-left: 10px solid #73D2E5;
+  border-radius: 15px;
+}
+
+.clock:hover {
+  background-color: #2e5ca5;
+  color: #ffb856;
+}
+
+.weather:hover > div {
+  background-color: #2e5ca5;
+  color: #ffb856;
 }
