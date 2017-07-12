@@ -1,0 +1,20 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+ul {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+}
+
+li {
+  list-style-type: none;
+  font-style: italic;
+  font-weight: bold;
+  padding: 15px;
+}
+
+body {
+  background-color: lightblue;
+}
