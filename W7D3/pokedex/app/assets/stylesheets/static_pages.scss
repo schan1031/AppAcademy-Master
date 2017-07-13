@@ -1,0 +1,16 @@
+ul {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  text-align: center;
+}
+
+li {
+  width: 150px;
+  list-style-type: none;
+  font-style: italic;
+  font-weight: bold;
+  padding: 10px;
+  border: 2px solid green;
+  border-radius: 10px;
+}
