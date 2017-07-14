@@ -49,3 +49,25 @@ Starting at Week 1, day 4, we began git. Weeks 1 and 2 of Ruby followed the foll
 *W5D4* - Javascript arguments, callbacks, invocation, Chrome Dev Tools.
 
 *W5D5* - Prototype chain, inheritance and Asteroids!
+
+## W6 - *Javascript*
+
+*W6D1* - Basic canvas drawing, inheritance.
+
+*W6D2* - jQuery!
+
+*W6D3* - AJAX, twitter, requests.
+
+*W6D4* - jQuery Lite.
+
+*W6D5* - Intro to REACT.
+
+## W7 - *REACT*
+
+*W7D1* - Redux/Flux, dollar store.
+
+*W7D2* - Middleware, thunks, namespace.
+
+*W7D3* - JBuilder, starting Pokedex.
+
+*W7D4* - Continue Pokedex, fully functioning.
