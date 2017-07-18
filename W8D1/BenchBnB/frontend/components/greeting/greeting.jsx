@@ -12,6 +12,7 @@ export default class Greeting extends React.Component {
   }
 
   render() {
+
     console.log(this.props);
     if (this.props.currentUser) {
       return (

@@ -1,34 +1,90 @@
 import React from 'react';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 
-export default class SessionForm extends React.Component {
+class SessionForm extends React.Component {
   constructor(props) {
 		super(props);
 		this.state = {
 			username: "",
 			password: ""
 		};
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateUsername = this.updateUsername.bind(this);
+    this.updatePassword = this.updatePassword.bind(this);
   }
 
-  updateUsername (e) {
-    
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.props.loggedIn) {
+  //     this.props.history.push('/');
+  //   }
+  // }
+
+  updateUsername(e) {
+    this.setState({username: e.target.value});
+  }
+
+  updatePassword(e) {
+    this.setState({password: e.target.value});
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.processForm(user);
+    this.props.processForm(this.state);
+    //   .then(
+    //   () => this.props.history.push('/')
+    // );
+
+  }
+
+  renderErrors() {
+    if (this.props.errors) {
+      return (
+        <ul>
+          {
+            this.props.errors.map((error, idx) => (
+              <li key={idx}>
+                {error}
+              </li>
+            )
+          )}
+        </ul>
+      );
+    } else {
+      return (
+        <div></div>
+      );
+    }
   }
 
   render () {
-    const formType = this.props.formType;
 
-    return (formType === 'login') ? (
+    if (this.props.loggedIn) {
+      return <Redirect to='/' />
+    }
+
+    const formType = this.props.formType;
+    const otherType = (formType === '/login') ? 'signup' : 'login';
+    const title = (formType === '/login') ? 'Log In' : 'Sign Up';
+
+    return (
       <div>
+        <h3>{title}</h3>
+        <Link to={`/${otherType}`}>
+          <button>{otherType}</button>
+        </Link>
+        {this.renderErrors()}
+        <br/>
         <span>Username</span>
-        <input type='text' onChange={this.updateUsername}/>
+        <input type='text' value={this.state.username} onChange={this.updateUsername}/>
+        <br/>
+        <span>Password</span>
+        <input type='password' value={this.state.pasword} onChange={this.updatePassword}/>
+
+        <button onClick={this.handleSubmit}>Submit</button>
+
       </div>
-    ) : (
-      <div></div>
     );
   }
 }
+
+export default withRouter(SessionForm);
