@@ -18553,6 +18553,8 @@ var _session_form_container2 = _interopRequireDefault(_session_form_container);
 
 var _reactRouterDom = __webpack_require__(178);
 
+var _route_util = __webpack_require__(369);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
@@ -18568,8 +18570,8 @@ var App = function App() {
         'Bench BnB'
       ),
       _react2.default.createElement(_greeting_container2.default, null),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _session_form_container2.default }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', component: _session_form_container2.default })
+      _react2.default.createElement(_route_util.AuthRoute, { path: '/login', component: _session_form_container2.default }),
+      _react2.default.createElement(_route_util.AuthRoute, { path: '/signup', component: _session_form_container2.default })
     )
   );
 };
@@ -28863,7 +28865,7 @@ var sessionReducer = function sessionReducer() {
       return (0, _merge2.default)({}, defaultState, { currentUser: action.currentUser });
     case _session_actions.RECEIVE_ERRORS:
       var errors = action.errors;
-      return (0, _merge2.default)({}, defaultState, { errors: errors });
+      return (0, _merge2.default)({}, defaultState, { errors: action.errors });
     default:
       return state;
   }
@@ -31329,12 +31331,6 @@ var SessionForm = function (_React$Component) {
     return _this;
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.props.loggedIn) {
-  //     this.props.history.push('/');
-  //   }
-  // }
-
   _createClass(SessionForm, [{
     key: 'updateUsername',
     value: function updateUsername(e) {
@@ -31430,6 +31426,43 @@ var SessionForm = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = (0, _reactRouterDom.withRouter)(SessionForm);
+
+/***/ }),
+/* 369 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.AuthRoute = undefined;
+
+var _reactRedux = __webpack_require__(153);
+
+var _reactRouterDom = __webpack_require__(178);
+
+var _react = __webpack_require__(7);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Auth = function Auth(_ref) {
+  var Component = _ref.component,
+      path = _ref.path,
+      loggedIn = _ref.loggedIn;
+  return _react2.default.createElement(_reactRouterDom.Route, { path: path, render: function render(props) {
+      return !loggedIn ? _react2.default.createElement(Component, props) : _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
+    } });
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return { loggedIn: Boolean(state.session.currentUser) };
+};
+
+var AuthRoute = exports.AuthRoute = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapStateToProps, null)(Auth));
 
 /***/ })
 /******/ ]);

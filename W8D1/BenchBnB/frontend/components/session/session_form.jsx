@@ -13,12 +13,6 @@ class SessionForm extends React.Component {
     this.updatePassword = this.updatePassword.bind(this);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.props.loggedIn) {
-  //     this.props.history.push('/');
-  //   }
-  // }
-
   updateUsername(e) {
     this.setState({username: e.target.value});
   }
